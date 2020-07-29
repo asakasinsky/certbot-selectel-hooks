@@ -35,3 +35,12 @@ certbot -q renew \
     --manual-cleanup-hook /PATH/TO/certbot-selectel-hooks/cleanup.sh \
     --post-hook /PATH/TO/post-hook.sh
 ```
+
+### post-hook.sh example
+post-hook.sh
+```sh
+#!/bin/bash
+chown -R www-data:www-data /etc/letsencrypt/{live,archive}
+systemctl reload nginx
+exit 0
+```
